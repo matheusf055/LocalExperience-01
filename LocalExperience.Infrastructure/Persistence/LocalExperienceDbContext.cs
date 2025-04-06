@@ -1,4 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using LocalExperience.Domain.Itineraries;
+using LocalExperience.Domain.Trips;
+using LocalExperience.Domain.Users;
+using LocalExperience.Infrastructure.Persistence.DbMap;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +18,17 @@ namespace LocalExperience.Infrastructure.Persistence
         {
         }
 
+        public DbSet<User> Users { get; set; }
+        public DbSet<Trip> Trips { get; set; }
+        public DbSet<Itinerary> Itineraries { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfiguration(new UserDbMap());
+            modelBuilder.ApplyConfiguration(new TripDbMap());
+            modelBuilder.ApplyConfiguration(new ItineraryDbMap());
         }
     }
 }
