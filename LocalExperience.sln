@@ -13,13 +13,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalExperience.Infrastruct
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalExperience.Tests", "LocalExperience.Tests\LocalExperience.Tests.csproj", "{40DDD31A-FA7A-4E91-84F1-9D47B1EDEACD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CEC7874C-E1AD-4618-BEE0-228B7C85D669}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{AC52D36D-A0B5-40AF-9E44-28CAF456C9C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -42,5 +44,8 @@ Global
 		{40DDD31A-FA7A-4E91-84F1-9D47B1EDEACD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40DDD31A-FA7A-4E91-84F1-9D47B1EDEACD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40DDD31A-FA7A-4E91-84F1-9D47B1EDEACD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
