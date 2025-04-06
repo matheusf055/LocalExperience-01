@@ -1,0 +1,30 @@
+﻿using LocalExperience.Domain.Common;
+using LocalExperience.Domain.Trips;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LocalExperience.Domain.Itineraries
+{
+    public class Itinerary : BaseEntity
+    {
+        public Guid TripId { get; set; }
+        public Trip Trip { get; set; }
+        public string Summary { get; set; }
+        public DateTime CreateDate { get; set; }
+
+        public Itinerary() { }
+
+        public Itinerary(Guid tripId, string summary)
+        {
+            if (string.IsNullOrWhiteSpace(summary))
+                throw new ArgumentException("Resumo do itinerário é obrigatório.");
+
+            TripId = tripId;
+            Summary = summary;
+            CreateDate = DateTime.UtcNow;
+        }
+    }
+}
