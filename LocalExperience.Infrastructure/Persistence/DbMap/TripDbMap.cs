@@ -33,6 +33,11 @@ namespace LocalExperience.Infrastructure.Persistence.DbMap
             builder.Property(t => t.EndDate)
                 .IsRequired();
 
+            builder.HasOne(t => t.User)
+                .WithMany(u => u.Trips)
+                .HasForeignKey(t => t.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
             builder.HasMany(t => t.Itineraries)
                 .WithOne(i => i.Trip)
                 .HasForeignKey(i => i.TripId)
