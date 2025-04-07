@@ -20,6 +20,11 @@ namespace LocalExperience.Infrastructure.Persistence.DbMap
             builder.Property(i => i.Summary)
                 .IsRequired()
                 .HasMaxLength(2000);
+
+            builder.HasOne(i => i.Trip)
+                .WithMany(t => t.Itineraries)
+                .HasForeignKey(i => i.TripId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
