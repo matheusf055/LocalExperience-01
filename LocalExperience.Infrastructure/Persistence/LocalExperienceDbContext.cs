@@ -21,7 +21,7 @@ namespace LocalExperience.Infrastructure.Persistence
         public DbSet<User> Users { get; set; }
         public DbSet<Trip> Trips { get; set; }
         public DbSet<Itinerary> Itineraries { get; set; }
-        public DbSet<TripsInterestProfile> travelInterestProfiles { get; set; }
+        public DbSet<TripsInterestProfile> TripsInterestProfile { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
