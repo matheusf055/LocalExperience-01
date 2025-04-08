@@ -28,7 +28,7 @@ namespace LocalExperience.Infrastructure.Persistence.DbMap
                 .IsRequired();
 
             builder.HasOne(p => p.Trip)
-                   .WithOne(t => t.tripsInterestProfile)
+                   .WithOne(t => t.TripsInterestProfile)
                    .HasForeignKey<TripsInterestProfile>(p => p.TripId)
                    .OnDelete(DeleteBehavior.Cascade);
         }

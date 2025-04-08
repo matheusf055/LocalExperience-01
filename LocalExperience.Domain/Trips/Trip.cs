@@ -19,7 +19,7 @@ namespace LocalExperience.Domain.Trips
         public string? ShareCode { get; set; }
         public DateTime CreateDate { get; set; }
         public List<Itinerary> Itineraries { get; set; } = new();
-        public TripsInterestProfile tripsInterestProfile { get; set; }
+        public TripsInterestProfile TripsInterestProfile { get; set; }
 
         public Trip() { }
 
