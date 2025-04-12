@@ -12,8 +12,10 @@ namespace LocalExperience.Domain.Users
     {
         public string Email { get; set; }
         public string Name { get; set; }
-        public List<Trip> Trips { get; set; } = new();
+        public string PasswordHash { get; private set; }
         public DateTime CreateDate { get; set; }
+
+        public List<Trip> Trips { get; set; } = new();
 
         public User() { }
 

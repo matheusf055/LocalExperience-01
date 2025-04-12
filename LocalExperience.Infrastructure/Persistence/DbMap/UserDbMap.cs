@@ -28,6 +28,9 @@ namespace LocalExperience.Infrastructure.Persistence.DbMap
                 .IsRequired()
                 .HasMaxLength(100);
 
+            builder.Property(u => u.PasswordHash)
+               .IsRequired();
+
             builder.HasMany(u => u.Trips)
                 .WithOne(t => t.User)
                 .HasForeignKey(t => t.UserId)
