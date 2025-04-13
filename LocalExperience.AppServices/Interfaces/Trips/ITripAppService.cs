@@ -11,8 +11,8 @@ namespace LocalExperience.AppServices.Interfaces.Trips
         Task<TripDto> GetByIdWithDetailsAsync(Guid id);
         Task<TripDto> GetByShareCodeAsync(string shareCode);
         Task<List<TripDto>> GetUserTripsAsync(Guid userId);
-        Task<TripDto> AddAsync(CreateTripDto tripDto);
-        Task<TripDto> UpdateAsync(UpdateTripDto tripDto);
+        Task AddAsync(CreateTripDto tripDto);
+        Task UpdateAsync(UpdateTripDto tripDto);
         Task DeleteAsync(Guid id);
     }
 }
