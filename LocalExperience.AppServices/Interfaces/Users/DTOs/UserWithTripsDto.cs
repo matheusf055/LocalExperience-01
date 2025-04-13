@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LocalExperience.AppServices.Interfaces.Trips.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,6 @@ namespace LocalExperience.AppServices.Interfaces.Users.DTOs
         public Guid Id { get; set; }
         public string Email { get; set; }
         public string Name { get; set; }
-        public List<TripSummaryDto> Trips { get; set; }
+        public List<TripDto> Trips { get; set; }
     }
 }
