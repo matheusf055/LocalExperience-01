@@ -12,7 +12,7 @@ namespace LocalExperience.Domain.Users
     {
         public string Email { get; set; }
         public string Name { get; set; }
-        public string PasswordHash { get; private set; }
+        public string PasswordHash { get; set; }
         public DateTime CreateDate { get; set; }
 
         public List<Trip> Trips { get; set; } = new();
@@ -24,6 +24,11 @@ namespace LocalExperience.Domain.Users
             Email = email;
             Name = name;
             CreateDate = DateTime.UtcNow;
+        }
+
+        public void SetPasswordHash(string hashedPassword)
+        {
+            PasswordHash = hashedPassword;
         }
     }
 }
