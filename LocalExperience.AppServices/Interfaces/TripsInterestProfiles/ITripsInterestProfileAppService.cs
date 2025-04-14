@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LocalExperience.AppServices.Interfaces.TripsInterestProfiles
 {
-    public interface ITripsInterestProfile
+    public interface ITripsInterestProfileAppService
     {
         Task<TripsInterestProfileDto> GetByTripIdAsync(Guid tripId);
         Task AddAsync(TripsInterestProfileCreateDto profile);
