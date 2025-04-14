@@ -26,6 +26,11 @@ namespace LocalExperience.Domain.Trips
             NightlifeInterest = nightlife;
             ShoppingInterest = shopping;
         }
+
+        public string GetInterestSummary()
+        {
+            return $"Cultura: {CultureInterest}, Natureza: {NatureInterest}, Gastronomia: {GastronomyInterest}, Noite: {NightlifeInterest}, Compras: {ShoppingInterest}";
+        }
     }
 
     public enum InterestLevel
