@@ -1,8 +1,12 @@
+using LocalExperience.Api.DI;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
+
+DependencyInjection.Configure(builder.Services, builder.Configuration);
 
 var app = builder.Build();
 
