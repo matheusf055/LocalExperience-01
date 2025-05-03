@@ -21,22 +21,22 @@ namespace LocalExperience.Api.Controllers.Users
         [HttpGet("{id}")]
         public async Task<ActionResult<UserDto>> GetById(Guid id)
         {
-            var user = await _userAppService.GetByIdAsync(id);
+            var user = await _userAppService.GetById(id);
             return Ok(user);
         }
 
         [HttpGet("{id}/details")]
         public async Task<ActionResult<UserWithTripsDto>> GetByIdWithDetails(Guid id)
         {
-            var user = await _userAppService.GetByIdWithDetailsAsync(id);
+            var user = await _userAppService.GetByIdWithDetails(id);
             return Ok(user);
         }
 
         [HttpPost("register")]
         [AllowAnonymous]
-        public async Task<ActionResult> Register([FromBody] UserRegisterDto userDto)
+        public async Task<ActionResult> Create([FromBody] UserRegisterDto userDto)
         {
-            await _userAppService.AddAsync(userDto);
+            await _userAppService.Create(userDto);
             return Ok();
         }
 
@@ -44,21 +44,21 @@ namespace LocalExperience.Api.Controllers.Users
         [AllowAnonymous]
         public async Task<ActionResult<UserDto>> Login([FromBody] UserLoginDto loginDto)
         {
-            var user = await _userAppService.LoginAsync(loginDto);
+            var user = await _userAppService.Login(loginDto);
             return Ok(user);
         }
 
         [HttpPut]
         public async Task<ActionResult> Update([FromBody] UserUpdateDto userUpdateDto)
         {
-            await _userAppService.UpdateAsync(userUpdateDto);
+            await _userAppService.Update(userUpdateDto);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(Guid id)
         {
-            await _userAppService.DeleteAsync(id);
+            await _userAppService.Delete(id);
             return NoContent();
         }
     }

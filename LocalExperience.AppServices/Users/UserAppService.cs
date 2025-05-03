@@ -21,9 +21,9 @@ namespace LocalExperience.AppServices.Users
             _userRepository = userRepository;
         }
 
-        public async Task<UserDto> GetByIdAsync(Guid id)
+        public async Task<UserDto> GetById(Guid id)
         {
-           var user = await _userRepository.GetByIdAsync(id);
+           var user = await _userRepository.GetById(id);
            if (user == null) throw new KeyNotFoundException("Usuário não foi encontrado.");
 
            return new UserDto
@@ -35,30 +35,30 @@ namespace LocalExperience.AppServices.Users
            };
         }
 
-        public async Task<UserWithTripsDto> GetByIdWithDetailsAsync(Guid id)
+        public async Task<UserWithTripsDto> GetByIdWithDetails(Guid id)
         {
-            var user = await _userRepository.GetByIdWithDetailsAsync(id);
+            var user = await _userRepository.GetByIdWithDetails(id);
             if (user == null) throw new KeyNotFoundException("Usuário não foi encontrado.");
 
             return UserMapper.ConvertUserWithTripsDto(user);
         }
 
-        public async Task AddAsync(UserRegisterDto userDto)
+        public async Task Create(UserRegisterDto userDto)
         {
-            var isUserExists = await _userRepository.GetByEmailAsync(userDto.Email);
-            if (isUserExists != null) throw new ArgumentException("Usuário já existe com esse e-mail.");
+            var isUserExists = await _userRepository.GetByEmail(userDto.Email);
+            if (isUserExists != null) throw new ArgumentException("Usuário já existe cadastrado.");
 
             var hashedPassword = PasswordHasher.HashPassword(userDto.Password);
             var user = new User(userDto.Email, userDto.Name);
             user.SetPasswordHash(hashedPassword);
 
-            await _userRepository.AddAsync(user);
+            await _userRepository.Create(user);
         }
 
-        public async Task<UserDto> LoginAsync(UserLoginDto loginDto)
+        public async Task<UserDto> Login(UserLoginDto loginDto)
         {
-            var user = await _userRepository.GetByEmailAsync(loginDto.Email);
-            if (user == null) throw new KeyNotFoundException("Usuário não encontrado.");
+            var user = await _userRepository.GetByEmail(loginDto.Email);
+            if (user == null) throw new KeyNotFoundException("Login ou senha errado.");
 
             var isPasswordValid = PasswordHasher.VerifyPassword(user.PasswordHash, loginDto.Password);
             if (isPasswordValid == false) throw new UnauthorizedAccessException("Senha inválida.");
@@ -72,9 +72,9 @@ namespace LocalExperience.AppServices.Users
             };
         }
 
-        public async Task UpdateAsync(UserUpdateDto userUpdateDto)
+        public async Task Update(UserUpdateDto userUpdateDto)
         {
-            var user = await _userRepository.GetByEmailAsync(userUpdateDto.Email);
+            var user = await _userRepository.GetByEmail(userUpdateDto.Email);
             if (user == null) throw new KeyNotFoundException("Usuário não encontrado.");
 
             if (string.IsNullOrEmpty(userUpdateDto.CurrentPassword) == false)
@@ -96,15 +96,15 @@ namespace LocalExperience.AppServices.Users
                 user.Name = userUpdateDto.Name;
             }
 
-            await _userRepository.UpdateAsync(user);
+            await _userRepository.Update(user);
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task Delete(Guid id)
         {
-            var user = await _userRepository.GetByIdAsync(id);
+            var user = await _userRepository.GetById(id);
             if (user == null) throw new KeyNotFoundException("Usuário não encontrado.");
 
-            await _userRepository.DeleteAsync(id);
+            await _userRepository.Delete(id);
         }
     }
 }
