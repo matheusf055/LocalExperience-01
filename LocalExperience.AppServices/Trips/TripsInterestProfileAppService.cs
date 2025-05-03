@@ -19,9 +19,9 @@ namespace LocalExperience.AppServices.Trips
             _tripsInterestProfilerepository = tripsInterestProfilerepository;
         }
 
-        public async Task<TripsInterestProfileDto> GetByTripIdAsync(Guid tripId)
+        public async Task<TripsInterestProfileDto> GetByTripId(Guid tripId)
         {
-            var tripsInterest = await _tripsInterestProfilerepository.GetByTripIdAsync(tripId);
+            var tripsInterest = await _tripsInterestProfilerepository.GetByTripId(tripId);
             if (tripsInterest == null) throw new KeyNotFoundException("Interesses da viagem não foram encontrado.");
 
             return new TripsInterestProfileDto
@@ -35,7 +35,7 @@ namespace LocalExperience.AppServices.Trips
             };  
         }
 
-        public async Task AddAsync(TripsInterestProfileCreateDto tripsInterest)
+        public async Task Create(TripsInterestProfileCreateDto tripsInterest)
         {
             var tripsInterestProfile = new TripsInterestProfile
             {
@@ -47,12 +47,12 @@ namespace LocalExperience.AppServices.Trips
                 ShoppingInterest = tripsInterest.ShoppingInterest
             };
 
-            await _tripsInterestProfilerepository.AddAsync(tripsInterestProfile);
+            await _tripsInterestProfilerepository.Create(tripsInterestProfile);
         }
 
-        public async Task UpdateAsync(TripsInterestProfileUpdateDto tripsInterest)
+        public async Task Update(TripsInterestProfileUpdateDto tripsInterest)
         {
-            var tripsInterestProfile = await _tripsInterestProfilerepository.GetByTripIdAsync(tripsInterest.TripId);
+            var tripsInterestProfile = await _tripsInterestProfilerepository.GetByTripId(tripsInterest.TripId);
             if (tripsInterestProfile == null) throw new KeyNotFoundException("Interesses da viagem não foram encontrado.");
 
             tripsInterest.CultureInterest = tripsInterest.CultureInterest;
@@ -61,15 +61,15 @@ namespace LocalExperience.AppServices.Trips
             tripsInterest.NightlifeInterest = tripsInterest.NightlifeInterest;
             tripsInterest.ShoppingInterest = tripsInterest.ShoppingInterest;
 
-            await _tripsInterestProfilerepository.UpdateAsync(tripsInterestProfile);
+            await _tripsInterestProfilerepository.Update(tripsInterestProfile);
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task Delete(Guid id)
         {
-            var tripsInterestProfile = await _tripsInterestProfilerepository.GetByTripIdAsync(id);
+            var tripsInterestProfile = await _tripsInterestProfilerepository.GetByTripId(id);
             if (tripsInterestProfile == null) throw new KeyNotFoundException("Interesses da viagem não foram encontrado.");
 
-            await _tripsInterestProfilerepository.DeleteAsync(id);
+            await _tripsInterestProfilerepository.Delete(id);
         }
     }
 }

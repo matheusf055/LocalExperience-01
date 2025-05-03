@@ -14,12 +14,12 @@ namespace LocalExperience.Infrastructure.Repositories.Trips
             _context = context;
         }
 
-        public async Task<Trip> GetByIdAsync(Guid id)
+        public async Task<Trip> GetById(Guid id)
         {
             return await _context.Trips.FindAsync(id);
         }
 
-        public async Task<Trip> GetByIdWithDetailsAsync(Guid id)
+        public async Task<Trip> GetByIdWithDetails(Guid id)
         {
             return await _context.Trips
                .Include(t => t.User)
@@ -28,7 +28,7 @@ namespace LocalExperience.Infrastructure.Repositories.Trips
                .FirstOrDefaultAsync(t => t.Id == id);
         }
 
-        public async Task<List<Trip>> GetUserTripsAsync(Guid userId)
+        public async Task<List<Trip>> GetAll(Guid userId)
         {
             return await _context.Trips
                 .Where(t => t.UserId == userId)
@@ -36,24 +36,24 @@ namespace LocalExperience.Infrastructure.Repositories.Trips
                 .ToListAsync();
         }
 
-        public async Task<Trip> GetByShareCodeAsync(string shareCode)
+        public async Task<Trip> GetByShareCode(string shareCode)
         {
             return await _context.Trips.FirstOrDefaultAsync(t => t.ShareCode == shareCode);
         }
 
-        public async Task AddAsync(Trip trip)
+        public async Task Create(Trip trip)
         {
             await _context.Trips.AddAsync(trip);
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(Trip trip)
+        public async Task Update(Trip trip)
         {
             _context.Trips.Update(trip);
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task Delete(Guid id)
         {
             var user = await _context.Trips.FindAsync(id);
             if (user != null)

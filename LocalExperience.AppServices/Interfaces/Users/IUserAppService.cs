@@ -9,11 +9,11 @@ namespace LocalExperience.AppServices.Interfaces.Users
 {
     public interface IUserAppService
     {
-        Task<UserDto> GetByIdAsync(Guid id);
-        Task<UserWithTripsDto> GetByIdWithDetailsAsync(Guid id);
-        Task<UserDto> LoginAsync(UserLoginDto loginDto);
-        Task AddAsync(UserRegisterDto user);
-        Task UpdateAsync(UserUpdateDto user);
-        Task DeleteAsync(Guid id);
+        Task<UserDto> GetById(Guid id);
+        Task<UserWithTripsDto> GetByIdWithDetails(Guid id);
+        Task<UserDto> Login(UserLoginDto loginDto);
+        Task Create(UserRegisterDto user);
+        Task Update(UserUpdateDto user);
+        Task Delete(Guid id);
     }
 }

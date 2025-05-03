@@ -7,9 +7,9 @@ namespace LocalExperience.AppServices.Interfaces.Itineraries
 {
     public interface IItineraryAppService
     {
-        Task<ItineraryDto> GetByIdAsync(Guid id);
-        Task AddAsync(CreateItineraryDto itineraryDto);
-        Task UpdateAsync(UpdateItineraryDto itineraryDto);
-        Task DeleteAsync(Guid id);
+        Task<ItineraryDto> GetById(Guid id);
+        Task Create(CreateItineraryDto itineraryDto);
+        Task Update(UpdateItineraryDto itineraryDto);
+        Task Delete(Guid id);
     }
 }

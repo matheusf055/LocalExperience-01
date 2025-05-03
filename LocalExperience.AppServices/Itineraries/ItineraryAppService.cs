@@ -26,9 +26,9 @@ namespace LocalExperience.AppServices.Itineraries
             _chatGptService = chatGptService;
         }
 
-        public async Task<ItineraryDto> GetByIdAsync(Guid id)
+        public async Task<ItineraryDto> GetById(Guid id)
         {
-            var itinerary = await _itineraryRepository.GetByIdAsync(id);
+            var itinerary = await _itineraryRepository.GetById(id);
             if (itinerary == null) throw new KeyNotFoundException("Roteiro não foi encontrado.");
 
             return new ItineraryDto
@@ -40,9 +40,9 @@ namespace LocalExperience.AppServices.Itineraries
             };
         }
 
-        public async Task AddAsync(CreateItineraryDto itineraryDto)
+        public async Task Create(CreateItineraryDto itineraryDto)
         {
-            var trip = await _tripRepository.GetByIdWithDetailsAsync(itineraryDto.TripId);
+            var trip = await _tripRepository.GetByIdWithDetails(itineraryDto.TripId);
             if (trip == null) throw new KeyNotFoundException("Viagem não encontrada.");
 
             if (trip.TripsInterestProfile == null) throw new InvalidOperationException("O perfil de interesses da viagem não foi encontrado.");
@@ -57,7 +57,7 @@ namespace LocalExperience.AppServices.Itineraries
                 Summary = summary,
             };
 
-            await _itineraryRepository.AddAsync(itinerary);
+            await _itineraryRepository.Create(itinerary);
         }
 
         private static string BuildPrompt(Trip trip)
@@ -71,22 +71,22 @@ namespace LocalExperience.AppServices.Itineraries
                 $"Formate o texto com dias separados e sugestões curtas.";
         }
 
-        public async Task UpdateAsync(UpdateItineraryDto itineraryDto)
+        public async Task Update(UpdateItineraryDto itineraryDto)
         {
-            var itinerary = await _itineraryRepository.GetByIdAsync(itineraryDto.Id);
+            var itinerary = await _itineraryRepository.GetById(itineraryDto.Id);
             if (itinerary == null) throw new KeyNotFoundException("Roteiro não foi encontrado.");
 
             itinerary.Summary = itineraryDto.Summary;
 
-            await _itineraryRepository.UpdateAsync(itinerary);
+            await _itineraryRepository.Update(itinerary);
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task Delete(Guid id)
         {
-            var itinerary = await _itineraryRepository.GetByIdAsync(id);
+            var itinerary = await _itineraryRepository.GetById(id);
             if (itinerary == null) throw new KeyNotFoundException("Roteiro não foi encontrado.");
 
-            await _itineraryRepository.DeleteAsync(id);
+            await _itineraryRepository.Delete(id);
         }
     }
 }

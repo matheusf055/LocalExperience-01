@@ -21,28 +21,28 @@ namespace LocalExperience.Api.Controllers.TripsInterestProfiles
         [HttpGet("trip/{tripId}")]
         public async Task<ActionResult<TripsInterestProfileDto>> GetByTripId(Guid tripId)
         {
-            var tripsInterestProfile = await _tripsInterestProfileAppService.GetByTripIdAsync(tripId);
+            var tripsInterestProfile = await _tripsInterestProfileAppService.GetByTripId(tripId);
             return Ok(tripsInterestProfile);
         }
 
         [HttpPost]
-        public async Task<ActionResult> Add([FromBody] TripsInterestProfileCreateDto tripsInterestProfileDto)
+        public async Task<ActionResult> Create([FromBody] TripsInterestProfileCreateDto tripsInterestProfileDto)
         {
-            await _tripsInterestProfileAppService.AddAsync(tripsInterestProfileDto);
+            await _tripsInterestProfileAppService.Create(tripsInterestProfileDto);
             return Ok();
         }
 
         [HttpPut]
         public async Task<ActionResult> Update([FromBody] TripsInterestProfileUpdateDto tripsInterestProfileDto)
         {
-            await _tripsInterestProfileAppService.UpdateAsync(tripsInterestProfileDto);
+            await _tripsInterestProfileAppService.Update(tripsInterestProfileDto);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(Guid id)
         {
-            await _tripsInterestProfileAppService.DeleteAsync(id);
+            await _tripsInterestProfileAppService.Delete(id);
             return NoContent();
         }
     }

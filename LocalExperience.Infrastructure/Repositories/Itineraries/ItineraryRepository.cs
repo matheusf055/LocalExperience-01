@@ -14,48 +14,32 @@ namespace LocalExperience.Infrastructure.Repositories.Itineraries
             _context = context;
         }
 
-        public async Task<Itinerary> GetByIdAsync(Guid id)
+        public async Task<Itinerary> GetById(Guid id)
         {
             return await _context.Itineraries.FindAsync(id);
         }
 
-        public async Task<Itinerary> GetByIdWithDetailsAsync(Guid id)
+        public async Task<Itinerary> GetByIdWithDetails(Guid id)
         {
             return await _context.Itineraries
                 .Include(i => i.Trip)
                 .FirstOrDefaultAsync(i => i.Id == id);
         }
 
-        public async Task<Itinerary> GetLatestForTripAsync(Guid tripId)
-        {
-            return await _context.Itineraries
-                .Where(i => i.TripId == tripId)
-                .OrderByDescending(i => i.CreateDate)
-                .FirstOrDefaultAsync();
-        }
 
-        public async Task<Itinerary> GetLatestForTripWithDetailsAsync(Guid tripId)
-        {
-            return await _context.Itineraries
-                .Where(i => i.TripId == tripId)
-                .OrderByDescending(i => i.CreateDate)
-                .FirstOrDefaultAsync();
-        }
-
-
-        public async Task AddAsync(Itinerary itinerary)
+        public async Task Create(Itinerary itinerary)
         {
             await _context.Itineraries.AddAsync(itinerary);
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(Itinerary itinerary)
+        public async Task Update(Itinerary itinerary)
         {
             _context.Itineraries.Update(itinerary);
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task Delete(Guid id)
         {
             var itinerary = await _context.Itineraries.FindAsync(id);
             if (itinerary != null)
