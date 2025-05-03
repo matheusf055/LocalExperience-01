@@ -23,45 +23,8 @@ namespace LocalExperience.AppServices.Users
 
         public async Task<UserDto> GetById(Guid id)
         {
-           var user = await _userRepository.GetById(id);
-           if (user == null) throw new KeyNotFoundException("Usuário não foi encontrado.");
-
-           return new UserDto
-           {
-               Id = user.Id,
-               Email = user.Email,
-               Name = user.Name,
-               CreateDate = user.CreateDate
-           };
-        }
-
-        public async Task<UserWithTripsDto> GetByIdWithDetails(Guid id)
-        {
-            var user = await _userRepository.GetByIdWithDetails(id);
+            var user = await _userRepository.GetById(id);
             if (user == null) throw new KeyNotFoundException("Usuário não foi encontrado.");
-
-            return UserMapper.ConvertUserWithTripsDto(user);
-        }
-
-        public async Task Create(UserRegisterDto userDto)
-        {
-            var isUserExists = await _userRepository.GetByEmail(userDto.Email);
-            if (isUserExists != null) throw new ArgumentException("Usuário já existe cadastrado.");
-
-            var hashedPassword = PasswordHasher.HashPassword(userDto.Password);
-            var user = new User(userDto.Email, userDto.Name);
-            user.SetPasswordHash(hashedPassword);
-
-            await _userRepository.Create(user);
-        }
-
-        public async Task<UserDto> Login(UserLoginDto loginDto)
-        {
-            var user = await _userRepository.GetByEmail(loginDto.Email);
-            if (user == null) throw new KeyNotFoundException("Login ou senha errado.");
-
-            var isPasswordValid = PasswordHasher.VerifyPassword(user.PasswordHash, loginDto.Password);
-            if (isPasswordValid == false) throw new UnauthorizedAccessException("Senha inválida.");
 
             return new UserDto
             {
@@ -70,6 +33,14 @@ namespace LocalExperience.AppServices.Users
                 Name = user.Name,
                 CreateDate = user.CreateDate
             };
+        }
+
+        public async Task<UserWithTripsDto> GetByIdWithDetails(Guid id)
+        {
+            var user = await _userRepository.GetByIdWithDetails(id);
+            if (user == null) throw new KeyNotFoundException("Usuário não foi encontrado.");
+
+            return UserMapper.ConvertUserWithTripsDto(user);
         }
 
         public async Task Update(UserUpdateDto userUpdateDto)

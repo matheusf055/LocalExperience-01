@@ -32,22 +32,6 @@ namespace LocalExperience.Api.Controllers.Users
             return Ok(user);
         }
 
-        [HttpPost("register")]
-        [AllowAnonymous]
-        public async Task<ActionResult> Create([FromBody] UserRegisterDto userDto)
-        {
-            await _userAppService.Create(userDto);
-            return Ok();
-        }
-
-        [HttpPost("login")]
-        [AllowAnonymous]
-        public async Task<ActionResult<UserDto>> Login([FromBody] UserLoginDto loginDto)
-        {
-            var user = await _userAppService.Login(loginDto);
-            return Ok(user);
-        }
-
         [HttpPut]
         public async Task<ActionResult> Update([FromBody] UserUpdateDto userUpdateDto)
         {
