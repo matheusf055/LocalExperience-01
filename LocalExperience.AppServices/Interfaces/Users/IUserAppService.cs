@@ -11,8 +11,6 @@ namespace LocalExperience.AppServices.Interfaces.Users
     {
         Task<UserDto> GetById(Guid id);
         Task<UserWithTripsDto> GetByIdWithDetails(Guid id);
-        Task<UserDto> Login(UserLoginDto loginDto);
-        Task Create(UserRegisterDto user);
         Task Update(UserUpdateDto user);
         Task Delete(Guid id);
     }
