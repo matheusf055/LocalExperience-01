@@ -1,6 +1,6 @@
 ﻿using LocalExperience.AppServices.Interfaces.Users;
-using LocalExperience.AppServices.Interfaces.Users.DTOs;
 using LocalExperience.AppServices.Mappers.Users;
+using LocalExperience.AppServices.Users.DTOs;
 using LocalExperience.Domain.Users;
 using LocalExperience.Domain.Users.Repositories;
 using LocalExperience.Infrastructure.Security;

@@ -1,5 +1,5 @@
 using LocalExperience.AppServices.Interfaces.Itineraries;
-using LocalExperience.AppServices.Interfaces.Itineraries.DTOs;
+using LocalExperience.AppServices.Itineraries.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;

@@ -5,10 +5,6 @@
     <ProjectReference Include="..\LocalExperience.Infrastructure\LocalExperience.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Interfaces\Trips\DTOs\" />
-  </ItemGroup>
-
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>

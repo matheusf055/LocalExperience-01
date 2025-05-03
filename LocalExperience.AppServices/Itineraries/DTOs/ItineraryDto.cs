@@ -1,6 +1,6 @@
 using System;
 
-namespace LocalExperience.AppServices.Interfaces.Itineraries.DTOs
+namespace LocalExperience.AppServices.Itineraries.DTOs
 {
     public class ItineraryDto
     {

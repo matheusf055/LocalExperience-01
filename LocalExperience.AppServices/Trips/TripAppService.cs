@@ -1,6 +1,6 @@
 ﻿using LocalExperience.AppServices.Interfaces.Trips;
-using LocalExperience.AppServices.Interfaces.Trips.DTOs;
 using LocalExperience.AppServices.Mappers.Trips;
+using LocalExperience.AppServices.Trips.DTOs;
 using LocalExperience.Domain.Trips;
 using LocalExperience.Domain.Trips.Repositories;
 using System;

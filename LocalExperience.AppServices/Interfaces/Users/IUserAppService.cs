@@ -1,4 +1,4 @@
-﻿using LocalExperience.AppServices.Interfaces.Users.DTOs;
+﻿using LocalExperience.AppServices.Users.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;

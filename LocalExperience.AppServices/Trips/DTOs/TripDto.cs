@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using LocalExperience.AppServices.Interfaces.Itineraries.DTOs;
+using LocalExperience.AppServices.Itineraries.DTOs;
 
-namespace LocalExperience.AppServices.Interfaces.Trips.DTOs
+namespace LocalExperience.AppServices.Trips.DTOs
 {
     public class TripDto
     {
@@ -16,4 +16,4 @@ namespace LocalExperience.AppServices.Interfaces.Trips.DTOs
         public List<ItineraryDto> Itineraries { get; set; }
         public TripsInterestProfileDto TripsInterestProfile { get; set; }
     }
-} 
+}

@@ -1,6 +1,6 @@
-﻿using LocalExperience.AppServices.Interfaces.Itineraries.DTOs;
-using LocalExperience.AppServices.Interfaces.Trips.DTOs;
-using LocalExperience.AppServices.Interfaces.Users.DTOs;
+﻿using LocalExperience.AppServices.Itineraries.DTOs;
+using LocalExperience.AppServices.Trips.DTOs;
+using LocalExperience.AppServices.Users.DTOs;
 using LocalExperience.Domain.Users;
 using System;
 using System.Collections.Generic;

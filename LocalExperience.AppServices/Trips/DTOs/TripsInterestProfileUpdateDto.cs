@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocalExperience.AppServices.Interfaces.TripsInterestProfiles.DTOs
+namespace LocalExperience.AppServices.Trips.DTOs
 {
-    public class TripsInterestProfileDto
+    public class TripsInterestProfileUpdateDto
     {
         public Guid TripId { get; set; }
         public int CultureInterest { get; set; }
@@ -15,5 +15,4 @@ namespace LocalExperience.AppServices.Interfaces.TripsInterestProfiles.DTOs
         public int NightlifeInterest { get; set; }
         public int ShoppingInterest { get; set; }
     }
-
 }

@@ -1,11 +1,11 @@
-﻿using LocalExperience.AppServices.Interfaces.Trips.DTOs;
+﻿using LocalExperience.AppServices.Trips.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocalExperience.AppServices.Interfaces.Users.DTOs
+namespace LocalExperience.AppServices.Users.DTOs
 {
     public class UserWithTripsDto
     {

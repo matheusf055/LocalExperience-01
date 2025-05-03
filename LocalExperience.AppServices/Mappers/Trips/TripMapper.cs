@@ -1,5 +1,5 @@
-﻿using LocalExperience.AppServices.Interfaces.Itineraries.DTOs;
-using LocalExperience.AppServices.Interfaces.Trips.DTOs;
+﻿using LocalExperience.AppServices.Itineraries.DTOs;
+using LocalExperience.AppServices.Trips.DTOs;
 using LocalExperience.Domain.Trips;
 using System;
 using System.Collections.Generic;

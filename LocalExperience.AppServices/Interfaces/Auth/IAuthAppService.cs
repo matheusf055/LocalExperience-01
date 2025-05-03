@@ -1,4 +1,4 @@
-using LocalExperience.AppServices.Interfaces.Users.DTOs;
+using LocalExperience.AppServices.Users.DTOs;
 using System.Threading.Tasks;
 
 namespace LocalExperience.AppServices.Interfaces.Auth
