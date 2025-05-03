@@ -20,9 +20,9 @@ namespace LocalExperience.AppServices.Trips
             _tripRepository = tripRepository;
         }
 
-        public async Task<TripDto> GetByIdAsync(Guid id)
+        public async Task<TripDto> GetById(Guid id)
         {
-            var trip = await _tripRepository.GetByIdAsync(id);
+            var trip = await _tripRepository.GetById(id);
             if (trip == null) throw new KeyNotFoundException("Viagem não foi encontrada.");
 
             return new TripDto
@@ -37,17 +37,17 @@ namespace LocalExperience.AppServices.Trips
             };
         }
 
-        public async Task<TripDto> GetByIdWithDetailsAsync(Guid id)
+        public async Task<TripDto> GetByIdWithDetails(Guid id)
         {
-            var trip = await _tripRepository.GetByIdAsync(id);
+            var trip = await _tripRepository.GetByIdWithDetails(id);
             if (trip == null) throw new KeyNotFoundException("Viagem não foi encontrada.");
 
             return TripMapper.ConvertTripWithDetails(trip);
         }
 
-        public async Task<TripDto> GetByShareCodeAsync(string shareCode)
+        public async Task<TripDto> GetByShareCode(string shareCode)
         {
-            var trip = await _tripRepository.GetByShareCodeAsync(shareCode);
+            var trip = await _tripRepository.GetByShareCode(shareCode);
             if (trip == null) throw new KeyNotFoundException("Viagem não foi encontrada.");
 
             return new TripDto
@@ -62,9 +62,9 @@ namespace LocalExperience.AppServices.Trips
             };
         }
 
-        public async Task<List<TripDto>> GetUserTripsAsync(Guid userId)
+        public async Task<List<TripDto>> GetAll(Guid userId)
         {
-            var trips = await _tripRepository.GetUserTripsAsync(userId);
+            var trips = await _tripRepository.GetAll(userId);
 
             if (trips == null || trips.Any() == false)
                 return new List<TripDto>();
@@ -83,7 +83,7 @@ namespace LocalExperience.AppServices.Trips
             return tripDtos;
         }
 
-        public async Task AddAsync(CreateTripDto tripDto)
+        public async Task Create(CreateTripDto tripDto)
         {
             var trip = new Trip(
                 tripDto.UserId,
@@ -93,12 +93,12 @@ namespace LocalExperience.AppServices.Trips
                 tripDto.ShareCode
             );
 
-            await _tripRepository.AddAsync(trip);
+            await _tripRepository.Create(trip);
         }
 
-        public async Task UpdateAsync(UpdateTripDto tripDto)
+        public async Task Update(UpdateTripDto tripDto)
         {
-            var trip = await _tripRepository.GetByIdAsync(tripDto.Id);
+            var trip = await _tripRepository.GetById(tripDto.Id);
             if (trip == null) throw new KeyNotFoundException("Viagem não foi encontrada.");
 
             trip.Destination = tripDto.Destination;
@@ -112,15 +112,15 @@ namespace LocalExperience.AppServices.Trips
             trip.TripsInterestProfile.GastronomyInterest = tripDto.InterestProfile.GastronomyInterest;
             trip.TripsInterestProfile.NightlifeInterest = tripDto.InterestProfile.NightlifeInterest;
 
-            await _tripRepository.UpdateAsync(trip);
+            await _tripRepository.Update(trip);
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task Delete(Guid id)
         {
-            var trip = await _tripRepository.GetByIdAsync(id);
+            var trip = await _tripRepository.GetById(id);
             if (trip == null) throw new KeyNotFoundException("Viagem não foi encontrada.");
 
-            await _tripRepository.DeleteAsync(id);
+            await _tripRepository.Delete(id);
         }
     }
 }
