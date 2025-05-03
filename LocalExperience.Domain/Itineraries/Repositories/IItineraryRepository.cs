@@ -8,12 +8,10 @@ namespace LocalExperience.Domain.Itineraries.Repositories
 {
     public interface IItineraryRepository
     {
-        Task<Itinerary> GetByIdAsync(Guid id);
-        Task<Itinerary> GetByIdWithDetailsAsync(Guid id);
-        Task<Itinerary> GetLatestForTripAsync(Guid tripId);
-        Task<Itinerary> GetLatestForTripWithDetailsAsync(Guid tripId);
-        Task AddAsync(Itinerary itinerary);
-        Task UpdateAsync(Itinerary itinerary);
-        Task DeleteAsync(Guid id);
+        Task<Itinerary> GetById(Guid id);
+        Task<Itinerary> GetByIdWithDetails(Guid id);
+        Task Create(Itinerary itinerary);
+        Task Update(Itinerary itinerary);
+        Task Delete(Guid id);
     }
 }

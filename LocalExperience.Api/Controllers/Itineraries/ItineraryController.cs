@@ -21,28 +21,28 @@ namespace LocalExperience.Api.Controllers.Itineraries
         [HttpGet("{id}")]
         public async Task<ActionResult<ItineraryDto>> GetById(Guid id)
         {
-            var itinerary = await _itineraryAppService.GetByIdAsync(id);
+            var itinerary = await _itineraryAppService.GetById(id);
             return Ok(itinerary);
         }
 
         [HttpPost]
-        public async Task<ActionResult> Add([FromBody] CreateItineraryDto itineraryDto)
+        public async Task<ActionResult> Create([FromBody] CreateItineraryDto itineraryDto)
         {
-            await _itineraryAppService.AddAsync(itineraryDto);
+            await _itineraryAppService.Create(itineraryDto);
             return Ok();
         }
 
         [HttpPut]
         public async Task<ActionResult> Update([FromBody] UpdateItineraryDto itineraryDto)
         {
-            await _itineraryAppService.UpdateAsync(itineraryDto);
+            await _itineraryAppService.Update(itineraryDto);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(Guid id)
         {
-            await _itineraryAppService.DeleteAsync(id);
+            await _itineraryAppService.Delete(id);
             return NoContent();
         }
     }
