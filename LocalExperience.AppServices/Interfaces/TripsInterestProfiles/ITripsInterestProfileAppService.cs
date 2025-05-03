@@ -9,9 +9,9 @@ namespace LocalExperience.AppServices.Interfaces.TripsInterestProfiles
 {
     public interface ITripsInterestProfileAppService
     {
-        Task<TripsInterestProfileDto> GetByTripIdAsync(Guid tripId);
-        Task AddAsync(TripsInterestProfileCreateDto profile);
-        Task UpdateAsync(TripsInterestProfileUpdateDto profile);
-        Task DeleteAsync(Guid id);
+        Task<TripsInterestProfileDto> GetByTripId(Guid tripId);
+        Task Create(TripsInterestProfileCreateDto profile);
+        Task Update(TripsInterestProfileUpdateDto profile);
+        Task Delete(Guid id);
     }
 }

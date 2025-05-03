@@ -13,24 +13,24 @@ namespace LocalExperience.Infrastructure.Repositories.TripsInterestProfiles
             _context = context;
         }
 
-        public async Task<TripsInterestProfile> GetByTripIdAsync(Guid tripId)
+        public async Task<TripsInterestProfile> GetByTripId(Guid tripId)
         {
             return await _context.TripsInterestProfile.FindAsync(tripId);
         }
 
-        public async Task AddAsync(TripsInterestProfile profile)
+        public async Task Create(TripsInterestProfile profile)
         {
             await _context.TripsInterestProfile.AddAsync(profile);
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(TripsInterestProfile profile)
+        public async Task Update(TripsInterestProfile profile)
         {
             _context.TripsInterestProfile.Update(profile);
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task Delete(Guid id)
         {
             var tripInterestProfile = _context.TripsInterestProfile.Find(id);
             if (tripInterestProfile != null)

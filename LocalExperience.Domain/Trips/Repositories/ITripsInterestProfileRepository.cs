@@ -8,10 +8,10 @@ namespace LocalExperience.Domain.Trips.Repositories
 {
     public interface ITripsInterestProfileRepository
     {
-        Task<TripsInterestProfile> GetByTripIdAsync(Guid tripId);
-        Task AddAsync(TripsInterestProfile profile);
-        Task UpdateAsync(TripsInterestProfile profile);
-        Task DeleteAsync(Guid id);
+        Task<TripsInterestProfile> GetByTripId(Guid tripId);
+        Task Create(TripsInterestProfile profile);
+        Task Update(TripsInterestProfile profile);
+        Task Delete(Guid id);
     }
 
 }
