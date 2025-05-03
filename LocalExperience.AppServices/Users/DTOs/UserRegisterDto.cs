@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocalExperience.AppServices.Interfaces.Users.DTOs
+namespace LocalExperience.AppServices.Users.DTOs
 {
-    public class UserDto
+    public class UserRegisterDto
     {
-        public Guid Id { get; set; }
         public string Email { get; set; }
         public string Name { get; set; }
-        public DateTime CreateDate { get; set; }
+        public string Password { get; set; }
     }
 }

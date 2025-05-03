@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using LocalExperience.AppServices.Interfaces.Itineraries.DTOs;
+using LocalExperience.AppServices.Itineraries.DTOs;
 
 namespace LocalExperience.AppServices.Interfaces.Itineraries
 {

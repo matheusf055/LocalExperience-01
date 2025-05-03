@@ -1,5 +1,5 @@
 using LocalExperience.AppServices.Interfaces.Auth;
-using LocalExperience.AppServices.Interfaces.Users.DTOs;
+using LocalExperience.AppServices.Users.DTOs;
 using LocalExperience.Domain.Users;
 using LocalExperience.Domain.Users.Repositories;
 using LocalExperience.Infrastructure.Security;

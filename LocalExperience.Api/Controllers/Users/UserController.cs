@@ -1,5 +1,5 @@
 ﻿using LocalExperience.AppServices.Interfaces.Users;
-using LocalExperience.AppServices.Interfaces.Users.DTOs;
+using LocalExperience.AppServices.Users.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;

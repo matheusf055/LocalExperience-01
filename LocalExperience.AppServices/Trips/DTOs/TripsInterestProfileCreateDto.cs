@@ -1,11 +1,14 @@
+﻿using LocalExperience.Domain.Trips;
 using System;
-using LocalExperience.Domain.Trips;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace LocalExperience.AppServices.Interfaces.Trips.DTOs
+namespace LocalExperience.AppServices.Trips.DTOs
 {
-    public class TripsInterestProfileDto
+    public class TripsInterestProfileCreateDto
     {
-        public Guid Id { get; set; }
         public Guid TripId { get; set; }
         public InterestLevel CultureInterest { get; set; }
         public InterestLevel NatureInterest { get; set; }
@@ -13,4 +16,4 @@ namespace LocalExperience.AppServices.Interfaces.Trips.DTOs
         public InterestLevel NightlifeInterest { get; set; }
         public InterestLevel ShoppingInterest { get; set; }
     }
-} 
+}

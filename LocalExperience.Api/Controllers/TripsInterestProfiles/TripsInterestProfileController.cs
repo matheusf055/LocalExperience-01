@@ -1,5 +1,5 @@
 using LocalExperience.AppServices.Interfaces.TripsInterestProfiles;
-using LocalExperience.AppServices.Interfaces.TripsInterestProfiles.DTOs;
+using LocalExperience.AppServices.Trips.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;

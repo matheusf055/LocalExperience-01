@@ -1,14 +1,14 @@
 using System;
 
-namespace LocalExperience.AppServices.Interfaces.Trips.DTOs
+namespace LocalExperience.AppServices.Trips.DTOs
 {
-    public class UpdateTripDto
+    public class CreateTripDto
     {
-        public Guid Id { get; set; }
+        public Guid UserId { get; set; }
         public string Destination { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string? ShareCode { get; set; }
-        public UpdateTripsInterestProfileDto InterestProfile { get; set; }
+        public CreateTripsInterestProfileDto InterestProfile { get; set; }
     }
-} 
+}

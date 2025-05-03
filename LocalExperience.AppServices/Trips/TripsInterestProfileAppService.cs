@@ -1,5 +1,5 @@
 ﻿using LocalExperience.AppServices.Interfaces.TripsInterestProfiles;
-using LocalExperience.AppServices.Interfaces.TripsInterestProfiles.DTOs;
+using LocalExperience.AppServices.Trips.DTOs;
 using LocalExperience.Domain.Trips;
 using LocalExperience.Domain.Trips.Repositories;
 using System;
@@ -27,11 +27,11 @@ namespace LocalExperience.AppServices.Trips
             return new TripsInterestProfileDto
             {
                 TripId = tripsInterest.TripId,
-                CultureInterest = (int)tripsInterest.CultureInterest,
-                NatureInterest = (int)tripsInterest.NatureInterest,
-                GastronomyInterest = (int)tripsInterest.GastronomyInterest,
-                NightlifeInterest = (int)tripsInterest.NightlifeInterest,
-                ShoppingInterest = (int)tripsInterest.ShoppingInterest
+                CultureInterest = tripsInterest.CultureInterest,
+                NatureInterest = tripsInterest.NatureInterest,
+                GastronomyInterest = tripsInterest.GastronomyInterest,
+                NightlifeInterest = tripsInterest.NightlifeInterest,
+                ShoppingInterest = tripsInterest.ShoppingInterest
             };  
         }
 

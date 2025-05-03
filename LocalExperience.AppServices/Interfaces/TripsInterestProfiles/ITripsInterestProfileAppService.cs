@@ -1,4 +1,4 @@
-﻿using LocalExperience.AppServices.Interfaces.TripsInterestProfiles.DTOs;
+﻿using LocalExperience.AppServices.Trips.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
