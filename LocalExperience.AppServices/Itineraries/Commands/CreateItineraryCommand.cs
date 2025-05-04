@@ -9,6 +9,5 @@ namespace LocalExperience.AppServices.Itineraries.Commands
     public class CreateItineraryCommand
     {
         public Guid TripId { get; set; }
-        public string Summary { get; set; }
     }
 }

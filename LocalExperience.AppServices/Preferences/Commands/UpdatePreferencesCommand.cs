@@ -9,7 +9,6 @@ namespace LocalExperience.AppServices.Preferences.Commands
 {
     public class UpdatePreferencesCommand
     {
-        public Guid Id { get; set; }
         public Guid TripId { get; set; }
         public InterestLevel CultureInterest { get; set; }
         public InterestLevel NatureInterest { get; set; }

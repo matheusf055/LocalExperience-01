@@ -41,9 +41,11 @@ namespace LocalExperience.AppServices.Users
             if (user == null) throw new KeyNotFoundException("Usuário não encontrado.");
 
             var isCurrentPasswordValid = PasswordHasher.VerifyPassword(user.PasswordHash, command.CurrentPassword);
-            if (isCurrentPasswordValid == false) throw new UnauthorizedAccessException("Senha atual inválida.");
+            if (isCurrentPasswordValid == false) 
+                throw new UnauthorizedAccessException("Senha atual inválida.");
 
-            if (command.NewPassword != command.ConfirmNewPassword) throw new ArgumentException("A nova senha e a confirmação da nova senha não coincidem.");
+            if (command.NewPassword != command.ConfirmNewPassword) 
+                throw new ArgumentException("A nova senha e a confirmação da nova senha não coincidem.");
 
             var newHashedPassword = PasswordHasher.HashPassword(command.NewPassword);
             user.SetPasswordHash(newHashedPassword);

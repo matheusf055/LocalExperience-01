@@ -1,4 +1,5 @@
 using LocalExperience.AppServices.Interfaces.Trips;
+using LocalExperience.AppServices.Trips.Commands;
 using LocalExperience.AppServices.Trips.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -41,16 +42,16 @@ namespace LocalExperience.Api.Controllers.Trips
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create([FromBody] CreateTripDto tripDto)
+        public async Task<ActionResult<TripDto>> Create([FromBody] CreateTripCommand command)
         {
-            await _tripAppService.Create(tripDto);
+            await _tripAppService.Create(command);
             return Ok();
         }
 
         [HttpPut]
-        public async Task<ActionResult> Update([FromBody] UpdateTripDto tripDto)
+        public async Task<ActionResult> Update([FromBody] UpdateTripCommand command)
         {
-            await _tripAppService.Update(tripDto);
+            await _tripAppService.Update(command);
             return Ok();
         }
 

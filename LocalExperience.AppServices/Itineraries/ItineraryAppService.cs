@@ -44,9 +44,11 @@ namespace LocalExperience.AppServices.Itineraries
         public async Task<ItineraryDto> Create(CreateItineraryCommand command)
         {
             var trip = await _tripRepository.GetById(command.TripId);
-            if (trip == null) throw new KeyNotFoundException("Viagem não encontrada.");
+            if (trip == null) 
+                throw new KeyNotFoundException("Viagem não encontrada.");
 
-            if (trip.Preference == null) throw new InvalidOperationException("O perfil de interesses da viagem não foi encontrado.");
+            if (trip.Preference == null) 
+                throw new InvalidOperationException("As preferências da viagem não foram encontradas.");
 
             var prompt = BuildPrompt(trip);
             var summary = await _chatGptService.GenerateItinerary(prompt);
@@ -77,7 +79,8 @@ namespace LocalExperience.AppServices.Itineraries
         public async Task Delete(Guid id)
         {
             var itinerary = await _itineraryRepository.GetById(id);
-            if (itinerary == null) throw new KeyNotFoundException("Roteiro não foi encontrado.");
+            if (itinerary == null) 
+                throw new KeyNotFoundException("Roteiro não foi encontrado.");
 
             await _itineraryRepository.Delete(id);
         }
