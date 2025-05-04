@@ -19,9 +19,6 @@ namespace LocalExperience.Domain.Itineraries
 
         public Itinerary(Guid tripId, string summary)
         {
-            if (string.IsNullOrWhiteSpace(summary))
-                throw new ArgumentException("Resumo do itinerário é obrigatório.");
-
             TripId = tripId;
             Summary = summary;
             CreateDate = DateTime.UtcNow;
