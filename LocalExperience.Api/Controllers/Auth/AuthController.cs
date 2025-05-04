@@ -1,3 +1,5 @@
+using LocalExperience.AppServices.Auth.Commands;
+using LocalExperience.AppServices.Auth.DTOs;
 using LocalExperience.AppServices.Interfaces.Auth;
 using LocalExperience.AppServices.Users.DTOs;
 using Microsoft.AspNetCore.Authorization;
@@ -19,18 +21,18 @@ namespace LocalExperience.Api.Controllers.Auth
 
         [HttpPost("register")]
         [AllowAnonymous]
-        public async Task<ActionResult> Register([FromBody] UserRegisterDto userDto)
+        public async Task<ActionResult> Register([FromBody] RegisterUserCommand command)
         {
-            await _authAppService.Register(userDto);
+            await _authAppService.Register(command);
             return Ok();
         }
 
         [HttpPost("login")]
         [AllowAnonymous]
-        public async Task<ActionResult<UserDto>> Login([FromBody] UserLoginDto loginDto)
+        public async Task<ActionResult<AuthDto>> Login([FromBody] LoginUserCommand command)
         {
-            var user = await _authAppService.Login(loginDto);
-            return Ok(user);
+            var auth = await _authAppService.Login(command);
+            return Ok(auth);
         }
     }
 }

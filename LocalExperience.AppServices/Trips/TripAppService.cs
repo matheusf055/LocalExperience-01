@@ -94,13 +94,6 @@ namespace LocalExperience.AppServices.Trips
             trip.Destination = tripDto.Destination;
             trip.StartDate = tripDto.StartDate;
             trip.EndDate = tripDto.EndDate;
-            trip.ShareCode = tripDto.ShareCode;
-
-            trip.TripsInterestProfile.CultureInterest = tripDto.InterestProfile.CultureInterest;
-            trip.TripsInterestProfile.NatureInterest = tripDto.InterestProfile.NatureInterest;
-            trip.TripsInterestProfile.ShoppingInterest = tripDto.InterestProfile.ShoppingInterest;
-            trip.TripsInterestProfile.GastronomyInterest = tripDto.InterestProfile.GastronomyInterest;
-            trip.TripsInterestProfile.NightlifeInterest = tripDto.InterestProfile.NightlifeInterest;
 
             await _tripRepository.Update(trip);
         }

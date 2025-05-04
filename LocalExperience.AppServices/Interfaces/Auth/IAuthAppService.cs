@@ -1,3 +1,5 @@
+using LocalExperience.AppServices.Auth.Commands;
+using LocalExperience.AppServices.Auth.DTOs;
 using LocalExperience.AppServices.Users.DTOs;
 using System.Threading.Tasks;
 
@@ -5,7 +7,7 @@ namespace LocalExperience.AppServices.Interfaces.Auth
 {
     public interface IAuthAppService
     {
-        Task Register(UserRegisterDto userDto);
-        Task<UserDto> Login(UserLoginDto loginDto);
+        Task Register(RegisterUserCommand command);
+        Task<AuthDto> Login(LoginUserCommand command);
     }
 }

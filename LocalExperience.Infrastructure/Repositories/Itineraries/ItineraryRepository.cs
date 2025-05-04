@@ -25,12 +25,6 @@ namespace LocalExperience.Infrastructure.Repositories.Itineraries
             await _context.SaveChangesAsync();
         }
 
-        public async Task Update(Itinerary itinerary)
-        {
-            _context.Itineraries.Update(itinerary);
-            await _context.SaveChangesAsync();
-        }
-
         public async Task Delete(Guid id)
         {
             var itinerary = await _context.Itineraries.FindAsync(id);

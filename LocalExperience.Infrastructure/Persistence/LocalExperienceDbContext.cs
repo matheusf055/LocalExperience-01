@@ -1,4 +1,5 @@
 ﻿using LocalExperience.Domain.Itineraries;
+using LocalExperience.Domain.Preferences;
 using LocalExperience.Domain.Trips;
 using LocalExperience.Domain.Users;
 using LocalExperience.Infrastructure.Persistence.DbMap;
@@ -21,7 +22,7 @@ namespace LocalExperience.Infrastructure.Persistence
         public DbSet<User> Users { get; set; }
         public DbSet<Trip> Trips { get; set; }
         public DbSet<Itinerary> Itineraries { get; set; }
-        public DbSet<TripsInterestProfile> TripsInterestProfile { get; set; }
+        public DbSet<Preference> preference { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -30,7 +31,7 @@ namespace LocalExperience.Infrastructure.Persistence
             modelBuilder.ApplyConfiguration(new UserDbMap());
             modelBuilder.ApplyConfiguration(new TripDbMap());
             modelBuilder.ApplyConfiguration(new ItineraryDbMap());
-            modelBuilder.ApplyConfiguration(new TripsInterestProfileDbMap());
+            modelBuilder.ApplyConfiguration(new preferenceDbMap());
         }
     }
 }

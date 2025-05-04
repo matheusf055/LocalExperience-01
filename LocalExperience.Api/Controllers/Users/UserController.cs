@@ -1,6 +1,6 @@
 ﻿using LocalExperience.AppServices.Interfaces.Users;
+using LocalExperience.AppServices.Users.Commands;
 using LocalExperience.AppServices.Users.DTOs;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -26,9 +26,9 @@ namespace LocalExperience.Api.Controllers.Users
         }
 
         [HttpPut]
-        public async Task<ActionResult> Update([FromBody] UserUpdateDto userUpdateDto)
+        public async Task<ActionResult> Update([FromBody] UpdateUserCommand command)
         {
-            await _userAppService.Update(userUpdateDto);
+            await _userAppService.Update(command);
             return Ok();
         }
 

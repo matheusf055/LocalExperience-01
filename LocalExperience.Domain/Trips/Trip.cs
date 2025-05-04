@@ -1,5 +1,6 @@
 ﻿using LocalExperience.Domain.Common;
 using LocalExperience.Domain.Itineraries;
+using LocalExperience.Domain.Preferences;
 using LocalExperience.Domain.Users;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace LocalExperience.Domain.Trips
         public string ShareCode { get; set; }
         public DateTime CreateDate { get; set; } = DateTime.UtcNow;
         public List<Itinerary> Itineraries { get; set; } = new List<Itinerary>();
-        public TripsInterestProfile TripsInterestProfile { get; set; }
+        public Preference Preference { get; set; }
 
         public Trip() { }
 

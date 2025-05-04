@@ -1,18 +1,16 @@
-﻿using LocalExperience.AppServices.Trips.DTOs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocalExperience.AppServices.Users.DTOs
+namespace LocalExperience.AppServices.Auth.DTOs
 {
-    public class UserWithTripsDto
+    public class AuthDto
     {
         public Guid Id { get; set; }
         public string Email { get; set; }
         public string Name { get; set; }
         public DateTime CreateDate { get; set; }
-        public List<TripDto> Trips { get; set; }
     }
 }

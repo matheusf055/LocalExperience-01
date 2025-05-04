@@ -1,4 +1,5 @@
 ﻿using LocalExperience.AppServices.Interfaces.Itineraries;
+using LocalExperience.AppServices.Itineraries.Commands;
 using LocalExperience.AppServices.Itineraries.DTOs;
 using LocalExperience.Domain.Itineraries;
 using LocalExperience.Domain.Itineraries.Repositories;
@@ -40,45 +41,37 @@ namespace LocalExperience.AppServices.Itineraries
             };
         }
 
-        public async Task Create(CreateItineraryDto itineraryDto)
+        public async Task<ItineraryDto> Create(CreateItineraryCommand command)
         {
-            var trip = await _tripRepository.GetById(itineraryDto.TripId);
+            var trip = await _tripRepository.GetById(command.TripId);
             if (trip == null) throw new KeyNotFoundException("Viagem não encontrada.");
 
-            if (trip.TripsInterestProfile == null) throw new InvalidOperationException("O perfil de interesses da viagem não foi encontrado.");
+            if (trip.Preference == null) throw new InvalidOperationException("O perfil de interesses da viagem não foi encontrado.");
 
             var prompt = BuildPrompt(trip);
-
             var summary = await _chatGptService.GenerateItinerary(prompt);
 
-            var itinerary = new Itinerary
-            {
-                TripId = trip.Id,
-                Summary = summary,
-            };
-
+            var itinerary = new Itinerary(command.TripId, summary);
             await _itineraryRepository.Create(itinerary);
+
+            return new ItineraryDto
+            {
+                Id = itinerary.Id,
+                TripId = itinerary.TripId,
+                Summary = itinerary.Summary,
+                CreateDate = itinerary.CreateDate
+            };
         }
 
         private static string BuildPrompt(Trip trip)
         {
-            var interests = trip.TripsInterestProfile.GetInterestSummary();
+            var preferences = trip.Preference.GetInterestSummary();
 
             return
                 $"Gere um itinerário de viagem dia a dia para o destino {trip.Destination} " +
                 $"entre os dias {trip.StartDate:dd/MM/yyyy} e {trip.EndDate:dd/MM/yyyy}. " +
-                $"O usuário tem interesse em: {interests}. " +
+                $"O usuário tem preferências em: {preferences}. " +
                 $"Formate o texto com dias separados e sugestões curtas.";
-        }
-
-        public async Task Update(UpdateItineraryDto itineraryDto)
-        {
-            var itinerary = await _itineraryRepository.GetById(itineraryDto.Id);
-            if (itinerary == null) throw new KeyNotFoundException("Roteiro não foi encontrado.");
-
-            itinerary.Summary = itineraryDto.Summary;
-
-            await _itineraryRepository.Update(itinerary);
         }
 
         public async Task Delete(Guid id)

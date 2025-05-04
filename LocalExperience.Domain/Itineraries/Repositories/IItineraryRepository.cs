@@ -10,7 +10,6 @@ namespace LocalExperience.Domain.Itineraries.Repositories
     {
         Task<Itinerary> GetById(Guid id);
         Task Create(Itinerary itinerary);
-        Task Update(Itinerary itinerary);
         Task Delete(Guid id);
     }
 }

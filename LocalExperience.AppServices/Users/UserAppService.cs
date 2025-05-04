@@ -1,5 +1,5 @@
 ﻿using LocalExperience.AppServices.Interfaces.Users;
-using LocalExperience.AppServices.Mappers.Users;
+using LocalExperience.AppServices.Users.Commands;
 using LocalExperience.AppServices.Users.DTOs;
 using LocalExperience.Domain.Users;
 using LocalExperience.Domain.Users.Repositories;
@@ -35,29 +35,20 @@ namespace LocalExperience.AppServices.Users
             };
         }
 
-        public async Task Update(UserUpdateDto userUpdateDto)
+        public async Task Update(UpdateUserCommand command)
         {
-            var user = await _userRepository.GetByEmail(userUpdateDto.Email);
+            var user = await _userRepository.GetByEmail(command.Email);
             if (user == null) throw new KeyNotFoundException("Usuário não encontrado.");
 
-            if (string.IsNullOrEmpty(userUpdateDto.CurrentPassword) == false)
-            {
-                var isCurrentPasswordValid = PasswordHasher.VerifyPassword(user.PasswordHash, userUpdateDto.CurrentPassword);
-                if (!isCurrentPasswordValid) throw new UnauthorizedAccessException("Senha atual inválida.");
-            }
+            var isCurrentPasswordValid = PasswordHasher.VerifyPassword(user.PasswordHash, command.CurrentPassword);
+            if (isCurrentPasswordValid == false) throw new UnauthorizedAccessException("Senha atual inválida.");
 
-            if (string.IsNullOrEmpty(userUpdateDto.NewPassword) == false)
-            {
-                if (userUpdateDto.NewPassword != userUpdateDto.ConfirmNewPassword) throw new ArgumentException("A nova senha e a confirmação da nova senha não coincidem.");
+            if (command.NewPassword != command.ConfirmNewPassword) throw new ArgumentException("A nova senha e a confirmação da nova senha não coincidem.");
 
-                var newHashedPassword = PasswordHasher.HashPassword(userUpdateDto.NewPassword);
-                user.SetPasswordHash(newHashedPassword); 
-            }
+            var newHashedPassword = PasswordHasher.HashPassword(command.NewPassword);
+            user.SetPasswordHash(newHashedPassword);
 
-            if (string.IsNullOrEmpty(userUpdateDto.Name) == false)
-            {
-                user.Name = userUpdateDto.Name;
-            }
+            user.Name = command.Name;
 
             await _userRepository.Update(user);
         }

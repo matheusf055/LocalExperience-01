@@ -13,7 +13,7 @@ namespace LocalExperience.Domain.Itineraries
         public Guid TripId { get; set; }
         public Trip Trip { get; set; }
         public string Summary { get; set; }
-        public DateTime CreateDate { get; set; }
+        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
 
         public Itinerary() { }
 
@@ -21,7 +21,6 @@ namespace LocalExperience.Domain.Itineraries
         {
             TripId = tripId;
             Summary = summary;
-            CreateDate = DateTime.UtcNow;
         }
     }
 }

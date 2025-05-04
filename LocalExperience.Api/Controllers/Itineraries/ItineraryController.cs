@@ -1,4 +1,5 @@
 using LocalExperience.AppServices.Interfaces.Itineraries;
+using LocalExperience.AppServices.Itineraries.Commands;
 using LocalExperience.AppServices.Itineraries.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -26,16 +27,9 @@ namespace LocalExperience.Api.Controllers.Itineraries
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create([FromBody] CreateItineraryDto itineraryDto)
+        public async Task<ActionResult<ItineraryDto>> Create([FromBody] CreateItineraryCommand command)
         {
-            await _itineraryAppService.Create(itineraryDto);
-            return Ok();
-        }
-
-        [HttpPut]
-        public async Task<ActionResult> Update([FromBody] UpdateItineraryDto itineraryDto)
-        {
-            await _itineraryAppService.Update(itineraryDto);
+            await _itineraryAppService.Create(command);
             return Ok();
         }
 
