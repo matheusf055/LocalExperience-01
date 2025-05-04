@@ -35,14 +35,6 @@ namespace LocalExperience.AppServices.Users
             };
         }
 
-        public async Task<UserWithTripsDto> GetByIdWithDetails(Guid id)
-        {
-            var user = await _userRepository.GetByIdWithDetails(id);
-            if (user == null) throw new KeyNotFoundException("Usuário não foi encontrado.");
-
-            return UserMapper.ConvertUserWithTripsDto(user);
-        }
-
         public async Task Update(UserUpdateDto userUpdateDto)
         {
             var user = await _userRepository.GetByEmail(userUpdateDto.Email);

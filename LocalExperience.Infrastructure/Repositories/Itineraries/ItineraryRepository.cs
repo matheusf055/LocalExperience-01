@@ -19,14 +19,6 @@ namespace LocalExperience.Infrastructure.Repositories.Itineraries
             return await _context.Itineraries.FindAsync(id);
         }
 
-        public async Task<Itinerary> GetByIdWithDetails(Guid id)
-        {
-            return await _context.Itineraries
-                .Include(i => i.Trip)
-                .FirstOrDefaultAsync(i => i.Id == id);
-        }
-
-
         public async Task Create(Itinerary itinerary)
         {
             await _context.Itineraries.AddAsync(itinerary);

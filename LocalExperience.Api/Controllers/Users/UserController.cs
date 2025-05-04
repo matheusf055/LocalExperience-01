@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace LocalExperience.Api.Controllers.Users
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/users")]
     public class UserController : ControllerBase
     {
         private readonly IUserAppService _userAppService;
@@ -19,16 +19,9 @@ namespace LocalExperience.Api.Controllers.Users
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<UserDto>> GetById(Guid id)
+        public async Task<ActionResult<UserDto>> GetById([FromRoute] Guid id)
         {
             var user = await _userAppService.GetById(id);
-            return Ok(user);
-        }
-
-        [HttpGet("{id}/details")]
-        public async Task<ActionResult<UserWithTripsDto>> GetByIdWithDetails(Guid id)
-        {
-            var user = await _userAppService.GetByIdWithDetails(id);
             return Ok(user);
         }
 
@@ -36,11 +29,11 @@ namespace LocalExperience.Api.Controllers.Users
         public async Task<ActionResult> Update([FromBody] UserUpdateDto userUpdateDto)
         {
             await _userAppService.Update(userUpdateDto);
-            return NoContent();
+            return Ok();
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(Guid id)
+        public async Task<ActionResult> Delete([FromRoute] Guid id)
         {
             await _userAppService.Delete(id);
             return NoContent();

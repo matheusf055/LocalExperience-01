@@ -9,7 +9,6 @@ namespace LocalExperience.Domain.Trips.Repositories
     public interface ITripRepository
     {
         Task<Trip> GetById(Guid id);
-        Task<Trip> GetByIdWithDetails(Guid id);
         Task<Trip> GetByShareCode(string shareCode);
         Task<List<Trip>> GetAll(Guid userId);
         Task Create(Trip trip);

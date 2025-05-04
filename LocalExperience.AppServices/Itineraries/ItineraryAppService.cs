@@ -42,7 +42,7 @@ namespace LocalExperience.AppServices.Itineraries
 
         public async Task Create(CreateItineraryDto itineraryDto)
         {
-            var trip = await _tripRepository.GetByIdWithDetails(itineraryDto.TripId);
+            var trip = await _tripRepository.GetById(itineraryDto.TripId);
             if (trip == null) throw new KeyNotFoundException("Viagem não encontrada.");
 
             if (trip.TripsInterestProfile == null) throw new InvalidOperationException("O perfil de interesses da viagem não foi encontrado.");

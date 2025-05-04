@@ -19,13 +19,6 @@ namespace LocalExperience.Infrastructure.Repositories.Users
             return await _context.Users.FindAsync(id);
         }
 
-        public async Task<User> GetByIdWithDetails(Guid id)
-        {
-            return await _context.Users
-                 .Include(u => u.Trips)
-                 .FirstOrDefaultAsync(u => u.Id == id);
-        }
-
         public Task<User> GetByEmail(string email)
         {
            return _context.Users.FirstOrDefaultAsync(u => u.Email == email);

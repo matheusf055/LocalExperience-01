@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace LocalExperience.Api.Controllers.Itineraries
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/itineraries")]
     public class ItineraryController : ControllerBase
     {
         private readonly IItineraryAppService _itineraryAppService;
@@ -19,8 +19,8 @@ namespace LocalExperience.Api.Controllers.Itineraries
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ItineraryDto>> GetById(Guid id)
-        {
+        public async Task<ActionResult<ItineraryDto>> GetById([FromRoute] Guid id)
+        { 
             var itinerary = await _itineraryAppService.GetById(id);
             return Ok(itinerary);
         }
@@ -36,11 +36,11 @@ namespace LocalExperience.Api.Controllers.Itineraries
         public async Task<ActionResult> Update([FromBody] UpdateItineraryDto itineraryDto)
         {
             await _itineraryAppService.Update(itineraryDto);
-            return NoContent();
+            return Ok();
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(Guid id)
+        public async Task<ActionResult> Delete([FromRoute] Guid id)
         {
             await _itineraryAppService.Delete(id);
             return NoContent();

@@ -1,5 +1,4 @@
 ﻿using LocalExperience.AppServices.Interfaces.Trips;
-using LocalExperience.AppServices.Mappers.Trips;
 using LocalExperience.AppServices.Trips.DTOs;
 using LocalExperience.Domain.Trips;
 using LocalExperience.Domain.Trips.Repositories;
@@ -35,14 +34,6 @@ namespace LocalExperience.AppServices.Trips
                 EndDate = trip.EndDate,
                 CreateDate = trip.CreateDate,
             };
-        }
-
-        public async Task<TripDto> GetByIdWithDetails(Guid id)
-        {
-            var trip = await _tripRepository.GetByIdWithDetails(id);
-            if (trip == null) throw new KeyNotFoundException("Viagem não foi encontrada.");
-
-            return TripMapper.ConvertTripWithDetails(trip);
         }
 
         public async Task<TripDto> GetByShareCode(string shareCode)
@@ -89,8 +80,7 @@ namespace LocalExperience.AppServices.Trips
                 tripDto.UserId,
                 tripDto.Destination,
                 tripDto.StartDate,
-                tripDto.EndDate,
-                tripDto.ShareCode
+                tripDto.EndDate
             );
 
             await _tripRepository.Create(trip);

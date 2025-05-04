@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace LocalExperience.Api.Controllers.Auth
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/auth")]
     public class AuthController : ControllerBase
     {
         private readonly IAuthAppService _authAppService;

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace LocalExperience.Api.Controllers.Trips
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/trips")]
     public class TripController : ControllerBase
     {
         private readonly ITripAppService _tripAppService;
@@ -20,16 +20,9 @@ namespace LocalExperience.Api.Controllers.Trips
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<TripDto>> GetById(Guid id)
+        public async Task<ActionResult<TripDto>> GetById([FromRoute] Guid id)
         {
             var trip = await _tripAppService.GetById(id);
-            return Ok(trip);
-        }
-
-        [HttpGet("{id}/details")]
-        public async Task<ActionResult<TripDto>> GetByIdWithDetails(Guid id)
-        {
-            var trip = await _tripAppService.GetByIdWithDetails(id);
             return Ok(trip);
         }
 
@@ -40,10 +33,10 @@ namespace LocalExperience.Api.Controllers.Trips
             return Ok(trip);
         }
 
-        [HttpGet("user/{userId}")]
-        public async Task<ActionResult<List<TripDto>>> GetAll(Guid userId)
+        [HttpGet]
+        public async Task<ActionResult<List<TripDto>>> GetAll(Guid id)
         {
-            var trips = await _tripAppService.GetAll(userId);
+            var trips = await _tripAppService.GetAll(id);
             return Ok(trips);
         }
 
@@ -58,7 +51,7 @@ namespace LocalExperience.Api.Controllers.Trips
         public async Task<ActionResult> Update([FromBody] UpdateTripDto tripDto)
         {
             await _tripAppService.Update(tripDto);
-            return NoContent();
+            return Ok();
         }
 
         [HttpDelete("{id}")]

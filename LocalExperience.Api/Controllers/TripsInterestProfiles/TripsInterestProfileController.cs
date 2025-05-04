@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace LocalExperience.Api.Controllers.TripsInterestProfiles
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/travelinterests")]
     public class TripsInterestProfileController : ControllerBase
     {
         private readonly ITripsInterestProfileAppService _tripsInterestProfileAppService;
@@ -18,10 +18,10 @@ namespace LocalExperience.Api.Controllers.TripsInterestProfiles
             _tripsInterestProfileAppService = tripsInterestProfileAppService;
         }
 
-        [HttpGet("trip/{tripId}")]
-        public async Task<ActionResult<TripsInterestProfileDto>> GetByTripId(Guid tripId)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<TripsInterestProfileDto>> GetByTripId([FromRoute] Guid id)
         {
-            var tripsInterestProfile = await _tripsInterestProfileAppService.GetByTripId(tripId);
+            var tripsInterestProfile = await _tripsInterestProfileAppService.GetByTripId(id);
             return Ok(tripsInterestProfile);
         }
 
@@ -36,11 +36,11 @@ namespace LocalExperience.Api.Controllers.TripsInterestProfiles
         public async Task<ActionResult> Update([FromBody] TripsInterestProfileUpdateDto tripsInterestProfileDto)
         {
             await _tripsInterestProfileAppService.Update(tripsInterestProfileDto);
-            return NoContent();
+            return Ok();
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(Guid id)
+        public async Task<ActionResult> Delete([FromRoute] Guid id)
         {
             await _tripsInterestProfileAppService.Delete(id);
             return NoContent();
