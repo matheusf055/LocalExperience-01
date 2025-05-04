@@ -5,6 +5,7 @@ using LocalExperience.AppServices.Trips.DTOs;
 using LocalExperience.Domain.Preferences;
 using LocalExperience.Domain.Preferences.Repositories;
 using LocalExperience.Domain.Trips;
+using LocalExperience.Domain.Trips.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +17,12 @@ namespace LocalExperience.AppServices.Preferences
     public class PreferencesAppService : IPreferencesAppService
     {
         private readonly IPreferencesRepository _preferenceRepository;
+        private readonly ITripRepository _tripRepository;
 
-        public PreferencesAppService(IPreferencesRepository preferencesRepository)
+        public PreferencesAppService(IPreferencesRepository preferencesRepository, ITripRepository tripRepository)
         {
             _preferenceRepository = preferencesRepository;
+            _tripRepository = tripRepository;
         }
 
         public async Task<PreferenceDto> GetByTripId(Guid tripId)
@@ -40,7 +43,12 @@ namespace LocalExperience.AppServices.Preferences
 
         public async Task<PreferenceDto> Create(CreatePreferencesCommand command)
         {
-            if (command == null) throw new ArgumentNullException(nameof(command));
+            if (command == null) 
+                throw new ArgumentNullException(nameof(command));
+
+            var trip = await _tripRepository.GetById(command.TripId);
+            if (trip == null)
+                throw new ArgumentNullException("Viagem não encontrada.");
 
             var preference = new Preference
             {

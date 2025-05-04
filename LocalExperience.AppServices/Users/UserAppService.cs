@@ -40,7 +40,7 @@ namespace LocalExperience.AppServices.Users
             var user = await _userRepository.GetByEmail(command.Email);
             if (user == null) throw new KeyNotFoundException("Usuário não encontrado.");
 
-            var isCurrentPasswordValid = PasswordHasher.VerifyPassword(user.PasswordHash, command.CurrentPassword);
+            var isCurrentPasswordValid = PasswordHasher.VerifyPassword(command.CurrentPassword, user.PasswordHash);
             if (isCurrentPasswordValid == false) 
                 throw new UnauthorizedAccessException("Senha atual inválida.");
 

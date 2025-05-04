@@ -30,8 +30,8 @@ namespace LocalExperience.Api.Controllers.Preferences
         [HttpPost]
         public async Task<ActionResult<PreferenceDto>> Create([FromBody] CreatePreferencesCommand command)
         {
-            await _preferencesAppService.Create(command);
-            return Ok();
+            var preferences = await _preferencesAppService.Create(command);
+            return Ok(preferences);
         }
 
         [HttpPut]

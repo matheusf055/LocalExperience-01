@@ -39,7 +39,7 @@ namespace LocalExperience.AppServices.Auth
             var user = await _userRepository.GetByEmail(command.Email);
             if (user == null) throw new KeyNotFoundException("Email ou senha inválidos.");
 
-            var isPasswordValid = PasswordHasher.VerifyPassword(user.PasswordHash, command.Password);
+            var isPasswordValid = PasswordHasher.VerifyPassword(command.Password, user.PasswordHash);
             if (isPasswordValid == false) throw new UnauthorizedAccessException("Email ou senha inválidos.");
 
             return new AuthDto
