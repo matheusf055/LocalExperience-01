@@ -1,5 +1,5 @@
 ﻿using LocalExperience.AppServices.Interfaces.Trips;
-using LocalExperience.AppServices.Mappers.Trips;
+using LocalExperience.AppServices.Trips.Commands;
 using LocalExperience.AppServices.Trips.DTOs;
 using LocalExperience.Domain.Trips;
 using LocalExperience.Domain.Trips.Repositories;
@@ -35,14 +35,6 @@ namespace LocalExperience.AppServices.Trips
                 EndDate = trip.EndDate,
                 CreateDate = trip.CreateDate,
             };
-        }
-
-        public async Task<TripDto> GetByIdWithDetails(Guid id)
-        {
-            var trip = await _tripRepository.GetByIdWithDetails(id);
-            if (trip == null) throw new KeyNotFoundException("Viagem não foi encontrada.");
-
-            return TripMapper.ConvertTripWithDetails(trip);
         }
 
         public async Task<TripDto> GetByShareCode(string shareCode)
@@ -83,34 +75,35 @@ namespace LocalExperience.AppServices.Trips
             return tripDtos;
         }
 
-        public async Task Create(CreateTripDto tripDto)
+        public async Task<TripDto> Create(CreateTripCommand command)
         {
-            var trip = new Trip(
-                tripDto.UserId,
-                tripDto.Destination,
-                tripDto.StartDate,
-                tripDto.EndDate,
-                tripDto.ShareCode
-            );
+            if (command == null)
+                throw new ArgumentNullException(nameof(command));
 
+            var trip = new Trip(command.UserId, command.Destination, command.StartDate, command.EndDate);
             await _tripRepository.Create(trip);
+
+            return new TripDto
+            {
+                Id = trip.Id,
+                UserId = trip.UserId,
+                Destination = trip.Destination,
+                ShareCode = trip.ShareCode,
+                StartDate = trip.StartDate,
+                EndDate = trip.EndDate,
+                CreateDate = trip.CreateDate,
+            };
         }
 
-        public async Task Update(UpdateTripDto tripDto)
+        public async Task Update(UpdateTripCommand command)
         {
-            var trip = await _tripRepository.GetById(tripDto.Id);
-            if (trip == null) throw new KeyNotFoundException("Viagem não foi encontrada.");
+            var trip = await _tripRepository.GetById(command.Id);
+            if (trip == null) 
+                throw new KeyNotFoundException("Viagem não foi encontrada.");
 
-            trip.Destination = tripDto.Destination;
-            trip.StartDate = tripDto.StartDate;
-            trip.EndDate = tripDto.EndDate;
-            trip.ShareCode = tripDto.ShareCode;
-
-            trip.TripsInterestProfile.CultureInterest = tripDto.InterestProfile.CultureInterest;
-            trip.TripsInterestProfile.NatureInterest = tripDto.InterestProfile.NatureInterest;
-            trip.TripsInterestProfile.ShoppingInterest = tripDto.InterestProfile.ShoppingInterest;
-            trip.TripsInterestProfile.GastronomyInterest = tripDto.InterestProfile.GastronomyInterest;
-            trip.TripsInterestProfile.NightlifeInterest = tripDto.InterestProfile.NightlifeInterest;
+            trip.Destination = command.Destination;
+            trip.StartDate = command.StartDate;
+            trip.EndDate = command.EndDate;
 
             await _tripRepository.Update(trip);
         }
@@ -118,7 +111,8 @@ namespace LocalExperience.AppServices.Trips
         public async Task Delete(Guid id)
         {
             var trip = await _tripRepository.GetById(id);
-            if (trip == null) throw new KeyNotFoundException("Viagem não foi encontrada.");
+            if (trip == null) 
+                throw new KeyNotFoundException("Viagem não foi encontrada.");
 
             await _tripRepository.Delete(id);
         }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocalExperience.AppServices.Users.DTOs
+namespace LocalExperience.AppServices.Users.Commands
 {
-    public class UserUpdateDto
+    public class UpdateUserCommand
     {
         public string Name { get; set; }
         public string Email { get; set; }

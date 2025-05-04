@@ -1,9 +1,15 @@
-using LocalExperience.Domain.Trips;
+﻿using LocalExperience.Domain.Preferences;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace LocalExperience.AppServices.Trips.DTOs
+namespace LocalExperience.AppServices.Preferences.DTOs
 {
-    public class CreateTripsInterestProfileDto
+    public class PreferenceDto
     {
+        public Guid TripId { get; set; }
         public InterestLevel CultureInterest { get; set; }
         public InterestLevel NatureInterest { get; set; }
         public InterestLevel GastronomyInterest { get; set; }

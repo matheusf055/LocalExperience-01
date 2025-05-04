@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocalExperience.AppServices.Users.DTOs
+namespace LocalExperience.AppServices.Auth.Commands
 {
-    public class UserRegisterDto
+    public class LoginUserCommand
     {
         public string Email { get; set; }
-        public string Name { get; set; }
         public string Password { get; set; }
     }
 }

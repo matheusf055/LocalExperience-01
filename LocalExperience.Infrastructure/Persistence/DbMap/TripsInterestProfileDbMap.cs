@@ -1,12 +1,12 @@
-﻿using LocalExperience.Domain.Trips;
+﻿using LocalExperience.Domain.Preferences;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace LocalExperience.Infrastructure.Persistence.DbMap
 {
-    public class TripsInterestProfileDbMap : IEntityTypeConfiguration<TripsInterestProfile>
+    public class preferenceDbMap : IEntityTypeConfiguration<Preference>
     {
-        public void Configure(EntityTypeBuilder<TripsInterestProfile> builder)
+        public void Configure(EntityTypeBuilder<Preference> builder)
         {
             builder.ToTable("TravelInterestProfiles");
 
@@ -28,8 +28,8 @@ namespace LocalExperience.Infrastructure.Persistence.DbMap
                 .IsRequired();
 
             builder.HasOne(p => p.Trip)
-                   .WithOne(t => t.TripsInterestProfile)
-                   .HasForeignKey<TripsInterestProfile>(p => p.TripId)
+                   .WithOne(t => t.Preference)
+                   .HasForeignKey<Preference>(p => p.TripId)
                    .OnDelete(DeleteBehavior.Cascade);
         }
     }

@@ -1,10 +1,11 @@
 ﻿using LocalExperience.Domain.Common;
+using LocalExperience.Domain.Trips;
 using LocalExperience.Domain.Users;
 using System;
 
-namespace LocalExperience.Domain.Trips
+namespace LocalExperience.Domain.Preferences
 {
-    public class TripsInterestProfile : BaseEntity
+    public class Preference : BaseEntity
     {
         public Guid TripId { get; set; }
         public Trip Trip { get; set; }
@@ -15,9 +16,9 @@ namespace LocalExperience.Domain.Trips
         public InterestLevel NightlifeInterest { get; set; }
         public InterestLevel ShoppingInterest { get; set; }
 
-        public TripsInterestProfile() { }
+        public Preference() { }
 
-        public TripsInterestProfile(Guid tripId, InterestLevel culture, InterestLevel nature, InterestLevel gastronomy, InterestLevel nightlife, InterestLevel shopping)
+        public Preference(Guid tripId, InterestLevel culture, InterestLevel nature, InterestLevel gastronomy, InterestLevel nightlife, InterestLevel shopping)
         {
             TripId = tripId;
             CultureInterest = culture;

@@ -1,4 +1,5 @@
-﻿using LocalExperience.AppServices.Users.DTOs;
+﻿using LocalExperience.AppServices.Users.Commands;
+using LocalExperience.AppServices.Users.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,7 @@ namespace LocalExperience.AppServices.Interfaces.Users
     public interface IUserAppService
     {
         Task<UserDto> GetById(Guid id);
-        Task<UserWithTripsDto> GetByIdWithDetails(Guid id);
-        Task Update(UserUpdateDto user);
+        Task Update(UpdateUserCommand command);
         Task Delete(Guid id);
     }
 }

@@ -1,4 +1,5 @@
 using LocalExperience.AppServices.Interfaces.Trips;
+using LocalExperience.AppServices.Trips.Commands;
 using LocalExperience.AppServices.Trips.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace LocalExperience.Api.Controllers.Trips
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/trips")]
     public class TripController : ControllerBase
     {
         private readonly ITripAppService _tripAppService;
@@ -20,16 +21,9 @@ namespace LocalExperience.Api.Controllers.Trips
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<TripDto>> GetById(Guid id)
+        public async Task<ActionResult<TripDto>> GetById([FromRoute] Guid id)
         {
             var trip = await _tripAppService.GetById(id);
-            return Ok(trip);
-        }
-
-        [HttpGet("{id}/details")]
-        public async Task<ActionResult<TripDto>> GetByIdWithDetails(Guid id)
-        {
-            var trip = await _tripAppService.GetByIdWithDetails(id);
             return Ok(trip);
         }
 
@@ -40,25 +34,25 @@ namespace LocalExperience.Api.Controllers.Trips
             return Ok(trip);
         }
 
-        [HttpGet("user/{userId}")]
-        public async Task<ActionResult<List<TripDto>>> GetAll(Guid userId)
+        [HttpGet]
+        public async Task<ActionResult<List<TripDto>>> GetAll(Guid id)
         {
-            var trips = await _tripAppService.GetAll(userId);
+            var trips = await _tripAppService.GetAll(id);
             return Ok(trips);
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create([FromBody] CreateTripDto tripDto)
+        public async Task<ActionResult<TripDto>> Create([FromBody] CreateTripCommand command)
         {
-            await _tripAppService.Create(tripDto);
+            await _tripAppService.Create(command);
             return Ok();
         }
 
         [HttpPut]
-        public async Task<ActionResult> Update([FromBody] UpdateTripDto tripDto)
+        public async Task<ActionResult> Update([FromBody] UpdateTripCommand command)
         {
-            await _tripAppService.Update(tripDto);
-            return NoContent();
+            await _tripAppService.Update(command);
+            return Ok();
         }
 
         [HttpDelete("{id}")]

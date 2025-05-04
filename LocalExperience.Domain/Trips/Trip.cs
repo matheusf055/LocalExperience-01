@@ -1,5 +1,6 @@
 ﻿using LocalExperience.Domain.Common;
 using LocalExperience.Domain.Itineraries;
+using LocalExperience.Domain.Preferences;
 using LocalExperience.Domain.Users;
 using System;
 using System.Collections.Generic;
@@ -16,27 +17,25 @@ namespace LocalExperience.Domain.Trips
         public string Destination { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public string? ShareCode { get; set; }
-        public DateTime CreateDate { get; set; }
-        public List<Itinerary> Itineraries { get; set; } = new();
-        public TripsInterestProfile TripsInterestProfile { get; set; }
+        public string ShareCode { get; set; }
+        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
+        public List<Itinerary> Itineraries { get; set; } = new List<Itinerary>();
+        public Preference Preference { get; set; }
 
         public Trip() { }
 
-        public Trip(Guid userId, string destination, DateTime startDate, DateTime endDate, string? shareCode)
+        public Trip(Guid userId, string destination, DateTime startDate, DateTime endDate)
         {
-            if (string.IsNullOrWhiteSpace(destination))
-                throw new ArgumentException("Destino é obrigatório.");
-
-            if (startDate > endDate)
-                throw new ArgumentException("A data de início não pode ser depois da data de término.");
-
             UserId = userId;
             Destination = destination;
             StartDate = startDate;
             EndDate = endDate;
-            ShareCode = shareCode;
-            CreateDate = DateTime.UtcNow;
+            ShareCode = GenerateShareCode();
+        }
+
+        private static string GenerateShareCode()
+        {
+            return Guid.NewGuid().ToString("N").Substring(0, 8);
         }
     }
 }

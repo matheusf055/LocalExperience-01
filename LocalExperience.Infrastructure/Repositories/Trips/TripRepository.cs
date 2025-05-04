@@ -19,15 +19,6 @@ namespace LocalExperience.Infrastructure.Repositories.Trips
             return await _context.Trips.FindAsync(id);
         }
 
-        public async Task<Trip> GetByIdWithDetails(Guid id)
-        {
-            return await _context.Trips
-               .Include(t => t.User)
-               .Include(t => t.TripsInterestProfile)
-               .Include(t => t.Itineraries)
-               .FirstOrDefaultAsync(t => t.Id == id);
-        }
-
         public async Task<List<Trip>> GetAll(Guid userId)
         {
             return await _context.Trips
