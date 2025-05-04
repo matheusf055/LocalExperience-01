@@ -1,4 +1,6 @@
-﻿using LocalExperience.AppServices.Interfaces.Itineraries;
+﻿using LocalExperience.AppServices.Auth;
+using LocalExperience.AppServices.Interfaces.Auth;
+using LocalExperience.AppServices.Interfaces.Itineraries;
 using LocalExperience.AppServices.Interfaces.Preferences;
 using LocalExperience.AppServices.Interfaces.Trips;
 using LocalExperience.AppServices.Interfaces.Users;
@@ -35,6 +37,7 @@ namespace LocalExperience.Api.DI
             services.AddScoped<IItineraryAppService, ItineraryAppService>();
             services.AddScoped<IPreferencesRepository, PreferencesRepository>();
             services.AddScoped<IPreferencesAppService, PreferencesAppService>();
+            services.AddScoped<IAuthAppService, AuthAppService>();
 
             services.AddHttpClient<ChatGptService>();
         }

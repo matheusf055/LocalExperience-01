@@ -34,18 +34,18 @@ namespace LocalExperience.Api.Controllers.Trips
             return Ok(trip);
         }
 
-        [HttpGet]
-        public async Task<ActionResult<List<TripDto>>> GetAll(Guid id)
+        [HttpGet("user/{userId}")]
+        public async Task<ActionResult<List<TripDto>>> GetAll([FromRoute] Guid userId)
         {
-            var trips = await _tripAppService.GetAll(id);
+            var trips = await _tripAppService.GetAll(userId);
             return Ok(trips);
         }
 
         [HttpPost]
         public async Task<ActionResult<TripDto>> Create([FromBody] CreateTripCommand command)
         {
-            await _tripAppService.Create(command);
-            return Ok();
+            var trip = await _tripAppService.Create(command);
+            return Ok(trip);
         }
 
         [HttpPut]

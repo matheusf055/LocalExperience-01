@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace LocalExperience.Infrastructure.Persistence.DbMap
 {
-    public class preferenceDbMap : IEntityTypeConfiguration<Preference>
+    public class PreferenceDbMap : IEntityTypeConfiguration<Preference>
     {
         public void Configure(EntityTypeBuilder<Preference> builder)
         {
